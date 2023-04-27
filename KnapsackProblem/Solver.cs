@@ -35,15 +35,45 @@ namespace KnapsackProblem
             List<UInt32> values = readInput.GetValue();
             List<UInt32> weights = readInput.GetWeight();
 
-            var totalWeight = weights[0];
-            var totalValue = values[0];
+            var maxWeight = weights[0];
+            var maxValue = values[0];
+
+            var totalValue = 0.0;
+
+            List<UInt32> resultValues = new List<UInt32>();
+            List<UInt32> resultWeights = new List<UInt32>();
 
 
 
-            for (int i = 1; i < weights.Count; i++)
+            var counter = 0.0;
+            //for (int i = 1; i < weights.Count; i++)
+            //{
+            //Console.WriteLine(values[i] + " " + weights[i]);
+
+            for (int j = 1; j < weights.Count - 1; j++)
             {
-                Console.WriteLine(values[i] + " " + weights[i]);
+
+                if (counter <= maxWeight || counter == 0.0)
+                {
+                    counter += weights[j];
+                    if (counter > maxWeight)
+                    {
+                        Console.WriteLine("Limit Exceeded");
+                        counter -= weights[j];
+                    }
+                    else
+                    {
+                        Console.WriteLine(values[j] + " " + weights[j]);
+                        resultValues.Add(values[j]);
+                        resultWeights.Add(weights[j]);
+                        totalValue += (values[j]);
+                    }
+                }
+                Console.WriteLine("Total:" + totalValue);
             }
+            Console.WriteLine("---------------------------");
+
+            //}
 
 
 
