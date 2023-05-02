@@ -38,42 +38,59 @@ namespace KnapsackProblem
             var maxWeight = weights[0];
             var maxValue = values[0];
 
-            var totalValue = 0.0;
-
-            List<UInt32> resultValues = new List<UInt32>();
-            List<UInt32> resultWeights = new List<UInt32>();
+            var bestValue = 0.0;
+            var tempValue = 0.0;
 
 
-
-            var counter = 0.0;
-            //for (int i = 1; i < weights.Count; i++)
-            //{
-            //Console.WriteLine(values[i] + " " + weights[i]);
-
-            for (int j = 1; j < weights.Count - 1; j++)
+            for (int i = 1; i < weights.Count; i++)
             {
+                var totalValue = 0.0;
+                var counter = 0.0;
+                List<UInt32> resultValues = new List<UInt32>();
+                List<UInt32> resultWeights = new List<UInt32>();
 
-                if (counter <= maxWeight || counter == 0.0)
+                Console.WriteLine(values[i] + " " + weights[i]);
+                resultValues.Add(values[i]);
+                resultWeights.Add(weights[i]);
+                counter += weights[i];
+                totalValue += (values[i]);
+
+
+                if (tempValue > bestValue)
                 {
-                    counter += weights[j];
-                    if (counter > maxWeight)
-                    {
-                        Console.WriteLine("Limit Exceeded");
-                        counter -= weights[j];
-                    }
-                    else
-                    {
-                        Console.WriteLine(values[j] + " " + weights[j]);
-                        resultValues.Add(values[j]);
-                        resultWeights.Add(weights[j]);
-                        totalValue += (values[j]);
-                    }
+                    bestValue = tempValue;
+                    Console.WriteLine("Best:" + bestValue);
                 }
-                Console.WriteLine("Total:" + totalValue);
-            }
-            Console.WriteLine("---------------------------");
+                else
+                {
+                    bestValue = tempValue;
+                }
+                for (int j = i + 1; j < weights.Count; j++)
+                {
 
-            //}
+                    if (counter <= maxWeight)
+                    {
+                        counter += weights[j];
+                        if (counter > maxWeight)
+                        {
+                            Console.WriteLine("Limit Exceeded!!!!!!!!!!!!!!!!!");
+                            counter -= weights[j];
+                        }
+                        else
+                        {
+                            Console.WriteLine(values[j] + " " + weights[j]);
+                            resultValues.Add(values[j]);
+                            resultWeights.Add(weights[j]);
+                            totalValue += (values[j]);
+                            tempValue = totalValue;
+                        }
+                    }
+                    Console.WriteLine("Total Value:" + totalValue + "    " + "Total Weight:" + counter);
+                }
+
+                Console.WriteLine("---------------------------");
+
+            }
 
 
 

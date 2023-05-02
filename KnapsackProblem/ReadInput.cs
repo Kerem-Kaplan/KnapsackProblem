@@ -54,7 +54,7 @@ namespace KnapsackProblem
             return weights;
         }
 
-       
+
     }
 }
 
