@@ -10,7 +10,7 @@ namespace KnapsackProblem
     {
         public List<UInt32> GetValue()
         {
-            StreamReader streamReader = new StreamReader("D:/ÜNİVERSİTE/6.DÖNEM/Algoritma Analizi Ve Tasarımı/Ödevler/Ödev-2/ks_4_0");
+            StreamReader streamReader = new("..\\..\\..\\ks_4_0");
 
             string line;
 
@@ -33,7 +33,7 @@ namespace KnapsackProblem
 
         public List<UInt32> GetWeight()
         {
-            StreamReader streamReader = new StreamReader("D:/ÜNİVERSİTE/6.DÖNEM/Algoritma Analizi Ve Tasarımı/Ödevler/Ödev-2/ks_4_0");
+            StreamReader streamReader = new StreamReader("..\\..\\..\\ks_4_0");
 
             string line;
 
