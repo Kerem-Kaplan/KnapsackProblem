@@ -49,7 +49,6 @@ namespace KnapsackProblem
                 status[n] = 0;
             }
 
-
             for (int i = 1; i < weights.Count; i++)
             {
                 var totalValue = 0.0;
@@ -71,22 +70,22 @@ namespace KnapsackProblem
                 }
 
 
+                // Console.WriteLine("\nValue: " + values[i] + "\t " + "Weight: " + weights[i]);
 
                 for (int j = i + 1; j < weights.Count; j++)
                 {
-                    Console.WriteLine("\nValue: " + values[i] + "\t " + "Weight: " + weights[i]);
                     if (counter <= maxWeight)
                     {
                         counter += weights[j];
                         if (counter > maxWeight)
                         {
                             status[j] = 0;
-                            Console.WriteLine("\nLimit Exceeded!!!!!!!!!!!!!!!!!");
+                            //Console.WriteLine("\nLimit Exceeded!!!!!!!!!!!!!!!!!");
                             counter -= weights[j];
                         }
                         else
                         {
-                            Console.WriteLine("Value: " + values[j] + "\t " + "Weight: " + weights[j]);
+                            //Console.WriteLine("Value: " + values[j] + "\t " + "Weight: " + weights[j]);
                             resultValues.Add(values[j]);
                             resultWeights.Add(weights[j]);
                             totalValue += (values[j]);
@@ -94,10 +93,9 @@ namespace KnapsackProblem
                             tempValue = totalValue;
                         }
                     }
-                    Console.WriteLine("\nTotal Value:" + totalValue + "    " + "Total Weight:" + counter);
+
                 }
 
-                Console.WriteLine("---------------------------");
 
                 if (tempValue > bestValue)
                 {
@@ -105,9 +103,9 @@ namespace KnapsackProblem
                     Console.WriteLine("Best Result:" + bestValue);
                     for (int m = 0; m < resultValues.Count; m++)
                     {
-
                         Console.WriteLine("Item--> \t Value: " + resultValues[m] + "\t Weight: " + resultWeights[m]);
                     }
+                    Console.WriteLine("\n\nTotal Value:" + totalValue + "    " + "Total Weight:" + counter + "\n");
 
 
                     for (int n = 1; n < values.Count; n++)
@@ -116,7 +114,7 @@ namespace KnapsackProblem
                         Console.Write(status[n] + " ");
                         status[n] = 0;
                     }
-                    Console.WriteLine("\n---------------------------");
+                    Console.WriteLine("\n---------------------------\n");
                 }
                 else
                 {
@@ -125,8 +123,6 @@ namespace KnapsackProblem
                         status[n] = 0;
                     }
                 }
-
-
 
             }
 
