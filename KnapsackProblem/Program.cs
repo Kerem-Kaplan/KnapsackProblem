@@ -14,17 +14,7 @@ namespace KnapsackProblem
             Stopwatch stopwatch = new();
             stopwatch.Start();
 
-            ReadInput readInput = new();
             Solver solver = new();
-
-            //Console.WriteLine("----------------------------");
-
-            //List<UInt32> calculateValues = solver.CalculateValues();
-
-            //for (int i = 0; i < calculateValues.Count; i++)
-            //{
-            //    Console.WriteLine(calculateValues[i]);
-            //}
 
             solver.SolvingResult();
             stopwatch.Stop();

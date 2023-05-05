@@ -8,15 +8,19 @@ namespace KnapsackProblem
 {
     public class ReadInput
     {
+        readonly string ks4 = "..\\..\\..\\ks_4_0";
+        readonly string ks19 = "..\\..\\..\\ks_19_0";
+        readonly string ks200 = "..\\..\\..\\ks_200_0";
+        readonly string ks10000 = "..\\..\\..\\ks_10000_0";
         public List<UInt32> GetValue()
         {
-            StreamReader streamReader = new("..\\..\\..\\ks_19_0");
+            StreamReader streamReader = new(ks19);
 
             string line;
 
             line = streamReader.ReadLine();
 
-            List<UInt32> values = new List<UInt32>();
+            List<UInt32> values = new();
 
             while (line != null)
             {
@@ -33,13 +37,13 @@ namespace KnapsackProblem
 
         public List<UInt32> GetWeight()
         {
-            StreamReader streamReader = new("..\\..\\..\\ks_19_0");
+            StreamReader streamReader = new(ks19);
 
             string line;
 
             line = streamReader.ReadLine();
 
-            List<UInt32> weights = new List<UInt32>();
+            List<UInt32> weights = new();
 
             while (line != null)
             {

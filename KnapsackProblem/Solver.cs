@@ -9,24 +9,6 @@ namespace KnapsackProblem
     public class Solver
     {
 
-        public List<UInt32> CalculateValues()
-        {
-            ReadInput readInput = new();
-
-            List<UInt32> values = readInput.GetValue();
-            List<UInt32> weights = readInput.GetWeight();
-
-            List<UInt32> calculateValues = new();
-
-            for (int i = 0; i < weights.Count; i++)
-            {
-                var totalValue = values[i] * weights[i];
-                calculateValues.Add(totalValue);
-                //Console.WriteLine(totalValue);
-            }
-
-            return calculateValues;
-        }
 
         public void SolvingResult()
         {
@@ -36,7 +18,6 @@ namespace KnapsackProblem
             List<UInt32> weights = readInput.GetWeight(); //weight değeri alınıyor
 
             var maxWeight = weights[0];     //maksimum weight değeri ataması
-            var maxValue = values[0];       //maksimum valuet değeri ataması
 
             var bestValue = 0.0;            //en iyi sonuç için oluşturulan değişken
             var tempValue = 0.0;            //en iyi sonuca göre karşılaştırması yapılacak olan
@@ -52,40 +33,32 @@ namespace KnapsackProblem
             for (int i = 1; i < weights.Count; i++)
             {
                 var totalValue = 0.0;
-                var counter = 0.0;
+                var counterWeight = 0.0;
                 List<UInt32> resultValues = new();
                 List<UInt32> resultWeights = new();
 
-
-
-                //Console.WriteLine("Value: " + values[i] + "\t " + "Weight: " + weights[i]);
-                if (weights[i] <= maxWeight)
+                if (weights[i] <= maxWeight)    //ilk eklenecek item'ın toplam ağırlıktan büyük
+                                                //olması kontrolü
                 {
                     resultValues.Add(values[i]);    //ilk value eklenmesi
                     resultWeights.Add(weights[i]);  //ilk weight eklenmesi
-                    counter += weights[i];
-                    totalValue += (values[i]);
-
-                    status[i] = 1;
+                    counterWeight += weights[i];    //ilk eklenen item'ın ağırlığının atanması
+                    totalValue += (values[i]);      //ilk eklenen item'ın değerinin atanması
+                    status[i] = 1;                  //eklenen item'ın değerinin 1 yapılması
                 }
 
-
-                // Console.WriteLine("\nValue: " + values[i] + "\t " + "Weight: " + weights[i]);
-
-                for (int j = i + 1; j < weights.Count; j++)
+                for (int j = i + 1; j < weights.Count; j++) //ilk eklenen itemden sonraki itemlerin eklenmesi
                 {
-                    if (counter <= maxWeight)
+                    if (counterWeight <= maxWeight)     //eklenecek item'ın toplam ağırlıkla karşılaştırışması
                     {
-                        counter += weights[j];
-                        if (counter > maxWeight)
+                        counterWeight += weights[j];
+                        if (counterWeight > maxWeight)
                         {
                             status[j] = 0;
-                            //Console.WriteLine("\nLimit Exceeded!!!!!!!!!!!!!!!!!");
-                            counter -= weights[j];
+                            counterWeight -= weights[j];
                         }
                         else
                         {
-                            //Console.WriteLine("Value: " + values[j] + "\t " + "Weight: " + weights[j]);
                             resultValues.Add(values[j]);
                             resultWeights.Add(weights[j]);
                             totalValue += (values[j]);
@@ -100,17 +73,10 @@ namespace KnapsackProblem
                 if (tempValue > bestValue)
                 {
                     bestValue = tempValue;
-                    Console.WriteLine("Best Result:" + bestValue);
-                    for (int m = 0; m < resultValues.Count; m++)
-                    {
-                        Console.WriteLine("Item--> \t Value: " + resultValues[m] + "\t Weight: " + resultWeights[m]);
-                    }
-                    Console.WriteLine("\n\nTotal Value:" + totalValue + "    " + "Total Weight:" + counter + "\n");
-
+                    Console.WriteLine(bestValue);
 
                     for (int n = 1; n < values.Count; n++)
                     {
-                        //status[i - 1] = 0;
                         Console.Write(status[n] + " ");
                         status[n] = 0;
                     }
